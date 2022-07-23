@@ -95,17 +95,20 @@ function prepareList(product){
             <Card.Img variant="top" src={product.url} style= {{width:"5rem",height:"5rem"}}/>
          </div>
          <div className="col textAlign">
-             <p className="mbb0 mrpfont">2Kg x 20</p>
-             <p className="mrpfont">Total: Rs 40</p>
+             <p className="mbb0">{product.name}</p>
+             <p className="mrp">MRP: Rs.{product.actualPrice.mrp}/{product.actualPrice.unit}</p>
+
+             <p className="mbb0 mrp">2Kg x 20</p>
+             <p className="mrp">Total: Rs 40</p>
     </div>   
     </div>
     <Card.Body>
-        <div className="row textAlign">
+        {/* <div className="row textAlign">
             <p className="mbb0">{product.name}</p>
         </div>
         <div className="row textAlign">
            <p>MRP: Rs.{product.actualPrice.mrp}/{product.actualPrice.unit}</p>
-        </div>
+        </div> */}
         <Form.Select size="sm">
          <option>50Kg</option>
          <option>kg</option>
