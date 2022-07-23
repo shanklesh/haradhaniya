@@ -1,11 +1,11 @@
 import React from "react";
 import { Nav, Form, Button, FormGroup, FormControl, ControlLabel ,Navbar,Container } from 'react-bootstrap';
 import { SignIn } from "./SignIn.component";
-
+import { SearchProduct } from "./SearchProduct.component";
 export function NaveBar() {
     return (
-        <div className="sticky-top mb50">
-        <Navbar bg="light" variant="light">
+        // <div className="sticky-top mb50">
+        <Navbar className="green">
             <Container fluid>
               <Navbar.Brand href="#home">
                 <img
@@ -22,10 +22,12 @@ export function NaveBar() {
               <Navbar.Text className="me-1"><SignIn /></Navbar.Text>
             </Navbar.Collapse>  
        <span className="material-icons position-realtive">face
-  </span>
-  </Container>
+  </span> 
+  
 
+  </Container>
   </Navbar>
-        </div>
+
+        /* </div> */
     )
 }

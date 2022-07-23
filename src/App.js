@@ -7,9 +7,13 @@ import { Products } from './component/ProductCard.component'
 import {BottomBar } from './component/bottomBar.component'
 function App() {
   return (
-  <div className="App">
-     <NaveBar></NaveBar>
+  <div className="App"> 
+     <div className="sticky-top green">
+
+     <NaveBar>
+     </NaveBar>
      <SearchProduct></SearchProduct>
+     </div>
      <Products></Products>
      <BottomBar></BottomBar>
   </div>
