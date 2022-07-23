@@ -5,7 +5,7 @@ function ButtonIncrement(props) {
         // <Button style={{height:"15px",width:"15px"}} onClick={props.onClickFunc}>
         //     +
         // </Button>
-        <Badge pill bg-primary onClick={props.onClickFunc}>+</Badge>
+        <Badge className="bg-success" pill  onClick={props.onClickFunc}>+</Badge>
 
     )
 }
@@ -17,7 +17,7 @@ function ButtonDecrement(props) {
         //     -
         //   </div>
         // </Button>
-            <Badge pill bg-primary onClick={props.onClickFunc}>-</Badge>
+            <Badge pill  className="bg-success" onClick={props.onClickFunc}>-</Badge>
     )
 }
 

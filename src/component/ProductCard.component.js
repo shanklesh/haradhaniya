@@ -118,7 +118,7 @@ function prepareList(product){
         <IncrementDecrement className='float-start'/>
         </div>
         <div className="col-6">
-        <Button className="m-1 float-end" style={{height:"20px", padding:"0px"}} variant="primary" size="sm">
+        <Button className="m-1 float-end btn btn-success btn-sm">
         <div><span className="font-size-15 mt-0 pt-0">ADD</span><span className="material-icons font-size-15 m-1">shopping_cart</span></div>
        </Button>
         <div className="bg-primary">
