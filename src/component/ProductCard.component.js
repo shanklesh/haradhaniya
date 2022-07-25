@@ -237,7 +237,7 @@ export function PrepareList(product){
         <div className="row textAlign">
            <p>MRP: Rs.{product.actualPrice.mrp}/{product.actualPrice.unit}</p>
         </div> */}
-            <form className="gridDisplay">
+            <Form className="gridDisplay">
             <select value={selected} onChange={handleChange}>
               {product.units.map((element,index)=> { 
                 if (index == 0){
@@ -249,7 +249,7 @@ export function PrepareList(product){
         }
      
             </select>
-            </form>
+            </Form>
         
         <div className="m-1 flex-row d-flex">
         <div className="col-6" style={{display:'flex'}}>
