@@ -98,3 +98,6 @@
 .mrp {
 font-size: 12px !important;
 }
+.gridDisplay{
+  display:grid !important
+}
