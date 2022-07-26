@@ -260,14 +260,14 @@ export function PrepareList(product){
         {/* <IncrementDecrement className='float-start'/> */}
         <div>
 
-        <Badge className="bg-success" pill  onClick = {incrementCounter}>+</Badge>
+        <Button className="bg-success m-1 btn btn-success btn-sm searchbutton"  onClick = {incrementCounter}>+</Button>
         <label style={{marginLeft:'.5rem'}}>{counter}</label>
-        <Badge pill  className="bg-success" onClick={decrementCounter}>-</Badge>
+        <Button  className="bg-success  m-1 btn btn-success btn-sm searchbutton" onClick={decrementCounter}>-</Button>
         </div>
 
         </div>
         <div className="col-6">
-        <Button className="m-1 float-end btn btn-success btn-sm">
+        <Button className="m-1 float-end btn btn-success btn-sm searchbutton">
         <div><span className="font-size-15 mt-0 pt-0">ADD</span><span className="material-icons font-size-15 m-1">shopping_cart</span></div>
        </Button>
         <div className="bg-primary">
