@@ -203,10 +203,11 @@ export function Products() {
 
 export function PrepareList(product){
     const [counter, setCounter] = useState(1);
-    const [selected,setSelected] = useState(`${product.units[0].qty}${product.units[0].unit}`);
+    const [selected,setSelected] = useState(0);
     const incrementCounter = () => setCounter(counter +1);
     let decrementCounter   = () => setCounter(counter - 1);
-    
+    let pricePer50Gram = (product.actualPrice.mrp * 1)/1000;
+
     if (counter<=1){
       decrementCounter = ()=>setCounter(1);
     }
@@ -214,7 +215,10 @@ export function PrepareList(product){
     const handleChange = (e) => {
         console.log(e.target.value)
         setSelected(e.target.value)
+
     }
+    let totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].qty);
+
     return (
     <div className='col-sm p00 pbb'>
     <Card>
@@ -226,8 +230,8 @@ export function PrepareList(product){
              <p className="mbb0">{product.name}</p>
              <p className="mrp">MRP: Rs.{product.actualPrice.mrp}/{product.actualPrice.unit}</p>
 
-             <p className="mbb0 mrp">{counter} x {selected} </p>
-             <p className="mrp">Total: Rs 40</p>
+             <p className="mbb0 mrp">{counter} x {product.units[selected].qty}{product.units[selected].unit} </p>
+             <p className="mrp">Total: Rs {totalPrice}</p>
     </div>   
     </div>
     <Card.Body>
@@ -241,9 +245,9 @@ export function PrepareList(product){
             <select value={selected} onChange={handleChange}>
               {product.units.map((element,index)=> { 
                 if (index == 0){
-                    return <option value={`${element.qty}${element.unit}`}>{element.qty}{element.unit}</option>
+                    return <option value={index}>{element.qty}{element.unit}</option>
                 }else {
-                    return <option value={`${element.qty}${element.unit}`}>{element.qty}{element.unit}</option>
+                    return <option value={index}>{element.qty}{element.unit}</option>
                 }
             })
         }
