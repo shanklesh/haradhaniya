@@ -217,7 +217,7 @@ export function PrepareList(product){
         setSelected(e.target.value)
 
     }
-    let totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].qty);
+    let totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].unit == 'kg'? 1000 : product.units[selected].qty);
 
     return (
     <div className='col-sm p00 pbb'>
