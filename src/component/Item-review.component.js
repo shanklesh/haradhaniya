@@ -1,6 +1,6 @@
 import react, { Component, useState } from "react"
 import {Modal,Button,Form} from "react-bootstrap";
-
+import { BottomBar } from "./bottomBar.component";
 export function ItemReviewComponent(prop) {
     const [show, setShow] = useState(false);
   
@@ -26,26 +26,26 @@ export function ItemReviewComponent(prop) {
           centered
           fullscreen 
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Sign in</Modal.Title>
-          </Modal.Header>
+       
           <Modal.Body>
-            <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-            </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Modal.Footer>
+           <div className='row bg-success'>
+             <p className='text-center text-white'>Review Cart</p>
+            </div>
+            <div className='row bg-light'>
+                <div className="col">
+                <p className="fw-lighter">2 Items</p>
+                </div>
+            </div>
+            <div className='row'>
+                <p>Product 1</p>
+            </div>
+            <div className='row'>
+                <p>Product 1</p>
+            </div>
+            <div className='row'>
+                <p>Product 1</p>
+            </div>
+         <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
@@ -53,7 +53,7 @@ export function ItemReviewComponent(prop) {
              Login
             </Button>       
         </Modal.Footer>
-        </Form>
+        <BottomBar></BottomBar>
         </Modal.Body>
         </Modal>
       </>
