@@ -46,15 +46,13 @@ export function ItemReviewComponent(prop) {
            
               {reviewList}
 
-         <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" type="submit">
-             Login
-            </Button>       
-        </Modal.Footer>
-        <div class="row fixed-bottom bg-light">
+         <div className="fixed-bottom">
+        <div className="row m-3">
+             <Button variant="secondary" onClick={handleClose}>
+              Back to shop
+            </Button> 
+        </div>
+        <div className="row bg-light">
             <div className="col">
                 <p>Total: <i className="fa fa-inr"></i>555</p> 
             </div>
@@ -63,6 +61,9 @@ export function ItemReviewComponent(prop) {
             </div>
         
         </div>
+
+         </div>
+        
         </Modal.Body>
         </Modal>
       </>
