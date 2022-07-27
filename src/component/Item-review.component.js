@@ -28,7 +28,7 @@ export function ItemReviewComponent(prop) {
         >
        
           <Modal.Body>
-           <div className='row bg-success'>
+           <div className='row bg-success fixed-top'>
              <p className='text-center text-white'>Review Cart</p>
             </div>
             <div className='row bg-light'>
@@ -37,14 +37,26 @@ export function ItemReviewComponent(prop) {
                 </div>
             </div>
             <div className='row'>
-                <p>Product 1</p>
+                <div className="col">
+                <img  src='tomato.jpg' style={{width:"5rem",height:"5rem"}}></img>
+                </div>
+                <div className="col"><p>data goes here</p></div>
             </div>
+            <hr></hr>
             <div className='row'>
-                <p>Product 1</p>
+            <div className="col">
+                <img  src='tomato.jpg' style={{width:"5rem",height:"5rem"}}></img>
+                </div>
+                <div className="col"><p>data goes here</p></div>            
             </div>
+            <hr></hr>
             <div className='row'>
-                <p>Product 1</p>
+            <div className="col">
+                <img  src='tomato.jpg' style={{width:"5rem",height:"5rem"}}></img>
+                </div>
+                <div className="col"><p>data goes here</p></div>
             </div>
+            <hr></hr>
          <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
@@ -53,7 +65,11 @@ export function ItemReviewComponent(prop) {
              Login
             </Button>       
         </Modal.Footer>
-        <BottomBar></BottomBar>
+        <div class="row fixed-bottom">
+            <Button>
+            <p>checkout/login/Add address goes here</p>
+            </Button>
+        </div>
         </Modal.Body>
         </Modal>
       </>
