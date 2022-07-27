@@ -232,11 +232,12 @@ export function PrepareList(product,cartItems,t){
              amount:totalPrice,
              qty :product.units[selected].qty + product.units[selected].unit,
              pId: product.pId,
-             url:product.url
+             url:product.url,
+             pName:product.name
          }
          cartItems.push(s)
          console.log(cartItems)
-         t();
+        //  t();
      }
     return (
     <div className='col-sm p00 pbb'>

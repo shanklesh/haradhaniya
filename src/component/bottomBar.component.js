@@ -14,7 +14,7 @@ export function BottomBar(prop) {
         <div className="container-fluid">
         <span className="material-icons">home</span>
         <span className="material-icons" >person</span>
-        <ItemReviewComponent showItem = {prop.showItem}/>
+        <ItemReviewComponent showItem = {prop.showItem} cartItems = {prop.cartItems}/>
 
         {/* <div className="material-icons position-realtive" onClick={cartList}>shopping_cart 
         {prop.showItem ?<span className="position-absolute top-10 start-90 translate-middle badge rounded-pill bg-danger">

@@ -6,7 +6,14 @@ export function ItemReviewComponent(prop) {
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+    let productName ='Tomato';
+    let qty = '1kg'
+    let amount = '20'
+    console.log("iten in rev",prop.cartItems)
+    let reviewList= []
+    for (let i=0; i < prop.cartItems.length; i++){
+        reviewList.push(CartItemInReview(prop.cartItems[i]))
+    }
     return (
       <>
         <div className="material-icons position-realtive" onClick={handleShow}>shopping_cart 
@@ -36,27 +43,9 @@ export function ItemReviewComponent(prop) {
                 <p className="fw-lighter">2 Items</p>
                 </div>
             </div>
-            <div className='row'>
-                <div className="col">
-                <img  src='tomato.jpg' style={{width:"5rem",height:"5rem"}}></img>
-                </div>
-                <div className="col"><p>data goes here</p></div>
-            </div>
-            <hr></hr>
-            <div className='row'>
-            <div className="col">
-                <img  src='tomato.jpg' style={{width:"5rem",height:"5rem"}}></img>
-                </div>
-                <div className="col"><p>data goes here</p></div>            
-            </div>
-            <hr></hr>
-            <div className='row'>
-            <div className="col">
-                <img  src='tomato.jpg' style={{width:"5rem",height:"5rem"}}></img>
-                </div>
-                <div className="col"><p>data goes here</p></div>
-            </div>
-            <hr></hr>
+           
+              {reviewList}
+
          <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
@@ -75,6 +64,21 @@ export function ItemReviewComponent(prop) {
       </>
     );
   }
-  
 
- 
+export function CartItemInReview(prop) {
+    return (
+        <>
+        < div className='row'>
+                <div className="col-3">
+                <img  src={prop.url} style={{width:"5rem",height:"5rem"}}></img>
+                </div>
+                <div className="col">
+                    <p className="m-0 fw-bold">{prop.pName}</p>
+                    <p className="fw-light">{prop.qty}</p>
+                    <p className="m-0 fw-bold"><i className="fa fa-inr"></i>{prop.amount}</p>
+                </div>
+            </div>
+            <hr></hr>
+        </>
+    )
+}
