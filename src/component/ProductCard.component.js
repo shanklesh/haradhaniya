@@ -2,14 +2,15 @@ import { React,useState }from "react";
 
 import {Badge, Card,Button,Form} from "react-bootstrap"
 import {IncrementDecrement } from "./IncrementDecrement.component"
-export function Products() {
+export function Products(prop) {
     const name = 'Hara dhaniya'
     const itemList =[];
-     
+    console.log("==line 8",prop)
     let p = [
         {
             url:'haradhaniya.jpg',
             name:'Hara Dhaniya',
+            pId:1,
             actualPrice:{
                 mrp:20,
                 unit:'Kg'
@@ -40,6 +41,7 @@ export function Products() {
         {
             url:'tomato.jpg',
             name:'Tomato',
+            pId:2,
             actualPrice:{
                 mrp:30,
                 unit:'Kg'
@@ -70,6 +72,7 @@ export function Products() {
         },{
             url:'bringle.jpg',
             name:'Bringle',
+            pId:3,
             actualPrice:{
                 mrp:40,
                 unit:'Kg'
@@ -100,6 +103,7 @@ export function Products() {
         {
             url:'potatoes.jpg',
             name:'Potatoes',
+            pId:4,
             actualPrice:{
                 mrp:10,
                 unit:'Kg'
@@ -129,6 +133,7 @@ export function Products() {
         },{
             url:'simlamirch.jpg',
             name:'Bringle',
+            pId:5,
             actualPrice:{
                 mrp:13,
                 unit:'Kg'
@@ -159,6 +164,7 @@ export function Products() {
         {
             url:'ladies-finger.jpg',
             name:'Bhindi',
+            pId:6,
             actualPrice:{
                 mrp:20,
                 unit:'Kg'
@@ -188,7 +194,7 @@ export function Products() {
         }
     ]
     for(let i=0; i< p.length; i++){
-        itemList.push(PrepareList(p[i]))
+        itemList.push(PrepareList(p[i],prop.cartItems,prop.t))
     }
     return (
         <div className="container-fluid">
@@ -200,8 +206,9 @@ export function Products() {
         
     )
 }
+// let cartItems = [];
 
-export function PrepareList(product){
+export function PrepareList(product,cartItems,t){
     const [counter, setCounter] = useState(1);
     const [selected,setSelected] = useState(0);
     const incrementCounter = () => setCounter(counter +1);
@@ -218,7 +225,19 @@ export function PrepareList(product){
 
     }
     let totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].unit == 'kg'? 1000 : product.units[selected].qty);
-
+    
+    //add to cart
+    const addTocart = () => {
+        let s =  {
+             amount:totalPrice,
+             qty :product.units[selected].qty + product.units[selected].unit,
+             pId: product.pId,
+             url:product.url
+         }
+         cartItems.push(s)
+         console.log(cartItems)
+         t();
+     }
     return (
     <div className='col-sm p00 pbb'>
     <Card>
@@ -235,12 +254,6 @@ export function PrepareList(product){
     </div>   
     </div>
     <Card.Body>
-        {/* <div className="row textAlign">
-            <p className="mbb0">{product.name}</p>
-        </div>
-        <div className="row textAlign">
-           <p>MRP: Rs.{product.actualPrice.mrp}/{product.actualPrice.unit}</p>
-        </div> */}
             <Form className="gridDisplay">
             <select value={selected} onChange={handleChange}>
               {product.units.map((element,index)=> { 
@@ -267,7 +280,7 @@ export function PrepareList(product){
 
         </div>
         <div className="col-6">
-        <Button className="m-1 float-end btn btn-success btn-sm searchbutton">
+        <Button className="m-1 float-end btn btn-success btn-sm searchbutton" onClick = {addTocart}>
         <div><span className="font-size-15 mt-0 pt-0">ADD</span><span className="material-icons font-size-15 m-1">shopping_cart</span></div>
        </Button>
         <div className="bg-primary">
