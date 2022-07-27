@@ -101,3 +101,6 @@ font-size: 12px !important;
 .gridDisplay{
   display:grid !important
 }
+.right {
+  float:right
+}

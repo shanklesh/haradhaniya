@@ -54,10 +54,14 @@ export function ItemReviewComponent(prop) {
              Login
             </Button>       
         </Modal.Footer>
-        <div class="row fixed-bottom">
-            <Button>
-            <p>checkout/login/Add address goes here</p>
-            </Button>
+        <div class="row fixed-bottom bg-light">
+            <div className="col">
+                <p>Total: <i className="fa fa-inr"></i>555</p> 
+            </div>
+            <div className="col">
+                <Button className="right m-3">Place order</Button>
+            </div>
+        
         </div>
         </Modal.Body>
         </Modal>
