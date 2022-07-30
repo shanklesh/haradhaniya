@@ -5,7 +5,7 @@ import {IncrementDecrement } from "./IncrementDecrement.component"
 export function Products(prop) {
     const name = 'Hara dhaniya'
     const itemList =[];
-    console.log("==line 8",prop)
+    // console.log("==line 8",prop)
     let p = [
         {
             url:'haradhaniya.jpg',
@@ -211,33 +211,39 @@ export function Products(prop) {
 export function PrepareList(product,cartItems,t){
     const [counter, setCounter] = useState(1);
     const [selected,setSelected] = useState(0);
-    const incrementCounter = () => setCounter(counter +1);
-    let decrementCounter   = () => setCounter(counter - 1);
-    let pricePer50Gram = (product.actualPrice.mrp * 1)/1000;
-
-    if (counter<=1){
-      decrementCounter = ()=>setCounter(1);
-    }
+    const [toggleAdd,setToggleAdd] = useState('block');
+    const [pricePer50Gram,setPricePerGram] = useState((product.actualPrice.mrp * 1)/1000)
+    // const [totalPrice,setTotalPrice] = useState(Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].unit == 'kg'? 1000 : product.units[selected].qty))
+    // let pricePer50Gram = (product.actualPrice.mrp * 1)/1000;
+    // console.log("prod",product,selected)
+     let totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].unit == 'kg'? 1000 : product.units[selected].qty);
+    
+    
 
     const handleChange = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setSelected(e.target.value)
 
     }
-    let totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[selected].unit == 'kg'? 1000 : product.units[selected].qty);
     
     //add to cart
-    const addTocart = () => {
-        let s =  {
-             amount:totalPrice,
-             qty :product.units[selected].qty + product.units[selected].unit,
-             pId: product.pId,
-             url:product.url,
-             pName:product.name
-         }
-         cartItems.push(s)
+    
+     const addTocart = () => {
+
+            let s =  {
+                 amount:totalPrice,
+                 qty :product.units[selected].qty + product.units[selected].unit,
+                 pId: product.pId,
+                 url:product.url,
+                 pName:product.name
+             }
+             cartItems.push(s)
+             setToggleAdd('none')
+        
          console.log(cartItems)
-        //  t();
+
+        
+        //   t();
      }
     return (
     <div className='col-sm p00 pbb'>
@@ -272,16 +278,10 @@ export function PrepareList(product,cartItems,t){
         <div className="m-1 flex-row d-flex">
         <div className="col-6" style={{display:'flex'}}>
         {/* <IncrementDecrement className='float-start'/> */}
-        <div>
-
-        <Button className="bg-success m-1 btn btn-success btn-sm searchbutton"  onClick = {incrementCounter}>+</Button>
-        <label style={{marginLeft:'.5rem'}}>{counter}</label>
-        <Button  className="bg-success  m-1 btn btn-success btn-sm searchbutton" onClick={decrementCounter}>-</Button>
-        </div>
-
+        <IncrementDecrements cartItems ={cartItems} totalPrice = {totalPrice} pricePer50Gram ={pricePer50Gram} product ={product} selected={selected}  counter ={counter} setCounter={setCounter} ></IncrementDecrements>
         </div>
         <div className="col-6">
-        <Button className="m-1 float-end btn btn-success btn-sm searchbutton" onClick = {addTocart}>
+        <Button style={{display:toggleAdd}} className="m-1 float-end btn btn-success btn-sm searchbutton" onClick = {addTocart} >
         <div><span className="font-size-15 mt-0 pt-0">ADD</span><span className="material-icons font-size-15 m-1">shopping_cart</span></div>
        </Button>
         <div className="bg-primary">
@@ -293,4 +293,54 @@ export function PrepareList(product,cartItems,t){
     </Card>
     </div>
     )
+} 
+
+export function IncrementDecrements(prop) {
+    const [counter, setCounter] =  useState(prop.counter);
+    const [total,setTotal] = useState(0);
+    const [pricePer50Gram,setPricePerGram] = useState((prop.product.actualPrice.mrp * 1)/1000)
+    // const [totalPrice,setTotalPrice] = useState(Number(counter+1) * Number(pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty))
+    // let pricePer50Gram = (product.actualPrice.mrp * 1)/1000;
+    // console.log("p
+     let totalPrice = Number(counter+1) * Number(prop.pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty);
+
+    const incrementCounter = () => {
+        setCounter(counter +1); 
+        prop.setCounter(prop.counter +1)
+        totalPrice = (Number(counter +1) * Number(pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty)   )
+        addtoCart();
+        console.log("counter",prop.counter)
+        console.log('after increment',total);
+   }
+   // console.log("cc",counter)
+   let decrementCounter   = () => setCounter(counter - 1);
+//    setTotal(Number(counter) * Number(prop.pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty)   )
+//     console.log("total",total)
+   if (counter<=1){
+     decrementCounter = ()=>setCounter(1);
+   }
+   let addtoCart = () => {
+   
+    let s =  {
+        amount:totalPrice,
+        qty :prop.product.units[prop.selected].qty + prop.product.units[prop.selected].unit,
+        pId: prop.product.pId,
+        url:prop.product.url,
+        pName:prop.product.name
+    }
+    prop.cartItems.map(element => {
+        if(element.pId == prop.product.pId){
+            element.amount = totalPrice
+        }  
+    })
+    console.log(prop.cartItems)
+   }
+   return (
+    <div>
+
+    <Button className="bg-success m-1 btn btn-success btn-sm searchbutton"  onClick = {incrementCounter}>+</Button>
+    <label style={{marginLeft:'.5rem'}}>{counter}</label>
+    <Button  className="bg-success  m-1 btn btn-success btn-sm searchbutton" onClick={decrementCounter}>-</Button>
+    </div>
+   )
 }

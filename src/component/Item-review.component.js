@@ -54,7 +54,7 @@ export function ItemReviewComponent(prop) {
         </div>
         <div className="row">
             <div className="col">
-                <p>Total: <i className="fa fa-inr"></i>555</p> 
+                <p className="m-4">Total: <i className="fa fa-inr"></i>555</p> 
             </div>
             <div className="col">
                 <Button className="right m-3">Place order</Button>
