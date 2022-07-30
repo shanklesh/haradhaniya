@@ -308,12 +308,18 @@ export function IncrementDecrements(prop) {
         setCounter(counter +1); 
         prop.setCounter(prop.counter +1)
         totalPrice = (Number(counter +1) * Number(pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty)   )
-        addtoCart();
+        addtoCart('inc');
         console.log("counter",prop.counter)
         console.log('after increment',total);
    }
    // console.log("cc",counter)
-   let decrementCounter   = () => setCounter(counter - 1);
+   let decrementCounter   = () => { 
+       setCounter(counter - 1)
+       prop.setCounter(prop.counter -1)
+       totalPrice = (Number(counter - 1) * Number(pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty)   )
+       addtoCart('dec');
+
+   }
 //    setTotal(Number(counter) * Number(prop.pricePer50Gram) * Number(prop.product.units[prop.selected].unit == 'kg'? 1000 : prop.product.units[prop.selected].qty)   )
 //     console.log("total",total)
    if (counter<=1){
