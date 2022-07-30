@@ -223,6 +223,15 @@ export function PrepareList(product,cartItems,t){
     const handleChange = (e) => {
         // console.log(e.target.value)
         setSelected(e.target.value)
+        console.log('selected',e.target.value)
+        totalPrice = Number(counter) * Number(pricePer50Gram) * Number(product.units[e.target.value].unit == 'kg'? 1000 : product.units[e.target.value].qty);
+        console.log(totalPrice)
+        cartItems.map(element => {
+            if(element.pId == product.pId){
+                element.amount = totalPrice
+            }  
+        })
+        console.log('233',cartItems)
 
     }
     
