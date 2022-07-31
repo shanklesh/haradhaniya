@@ -241,7 +241,9 @@ export function PrepareList(product,cartItems,t){
 
             let s =  {
                  amount:totalPrice,
-                 qty :product.units[selected].qty + product.units[selected].unit,
+                 qty :product.units[selected].qty,
+                 count:counter,
+                 unit:product.units[selected].unit,
                  pId: product.pId,
                  url:product.url,
                  pName:product.name
@@ -249,7 +251,7 @@ export function PrepareList(product,cartItems,t){
              cartItems.push(s)
              setToggleAdd('none')
         
-         console.log(cartItems)
+         console.log('line 254',cartItems)
 
         
         //   t();
@@ -334,20 +336,32 @@ export function IncrementDecrements(prop) {
    if (counter<=1){
      decrementCounter = ()=>setCounter(1);
    }
-   let addtoCart = () => {
+   let addtoCart = (operation) => {
    
     let s =  {
         amount:totalPrice,
         qty :prop.product.units[prop.selected].qty + prop.product.units[prop.selected].unit,
         pId: prop.product.pId,
         url:prop.product.url,
+        count:counter +1,
         pName:prop.product.name
     }
-    prop.cartItems.map(element => {
-        if(element.pId == prop.product.pId){
-            element.amount = totalPrice
-        }  
-    })
+    if (operation == 'inc'){
+        prop.cartItems.map(element => {
+            if(element.pId == prop.product.pId){
+                element.amount = totalPrice
+                element.count = counter+1;
+            }  
+        })
+    }
+    if(operation == 'dec') {
+        prop.cartItems.map(element => {
+            if(element.pId == prop.product.pId){
+                element.amount = totalPrice
+                element.count = counter -1;
+            }  
+        })
+    }
     console.log(prop.cartItems)
    }
    return (

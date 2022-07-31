@@ -71,6 +71,9 @@ export function ItemReviewComponent(prop) {
   }
 
 export function CartItemInReview(prop) {
+  console.log("==74",prop)
+    let qty = Number(prop.count) * Number(prop.qty);
+    qty += prop.unit;
     return (
         <>
         < div className='row'>
@@ -79,7 +82,7 @@ export function CartItemInReview(prop) {
                 </div>
                 <div className="col">
                     <p className="m-0 fw-bold">{prop.pName}</p>
-                    <p className="fw-light">{prop.qty}</p>
+                    <p className="fw-light">{qty}</p>
                     <p className="m-0 fw-bold"><i className="fa fa-inr"></i>{prop.amount}</p>
                 </div>
             </div>
