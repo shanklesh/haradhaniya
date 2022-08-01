@@ -8,11 +8,12 @@ export function ItemReviewComponent(prop) {
     const handleShow = () => setShow(true);
     let productName ='Tomato';
     let qty = '1kg'
-    let amount = '20'
+    let totAmt = 0;
     console.log("iten in rev",prop.cartItems)
     let reviewList= []
     for (let i=0; i < prop.cartItems.length; i++){
         reviewList.push(CartItemInReview(prop.cartItems[i]))
+        totAmt = totAmt + prop.cartItems[i].amount;
     }
     return (
       <>
@@ -54,7 +55,7 @@ export function ItemReviewComponent(prop) {
         </div>
         <div className="row">
             <div className="col">
-                <p className="m-4">Total: <i className="fa fa-inr"></i>555</p> 
+                <p className="m-4">Total: <i className="fa fa-inr"></i>{totAmt}</p> 
             </div>
             <div className="col">
                 <Button className="right m-3">Place order</Button>
