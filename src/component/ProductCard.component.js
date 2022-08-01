@@ -229,6 +229,7 @@ export function PrepareList(product,cartItems,t){
         cartItems.map(element => {
             if(element.pId == product.pId){
                 element.amount = totalPrice
+                element.unit = product.units[e.target.value].unit              
                 element.qty =  product.units[e.target.value].qty;
             }  
         })
